@@ -1,0 +1,178 @@
+/* reseta todas as configurações fixas do CSS para o navegador */ 
+*{
+    margin: 0;
+    padding: 0;
+    /* box-sizing: border-box; >>> fará todos os cálculos das caixas automaticamente de maneira mais coerente */
+    box-sizing: border-box;
+}
+/* vaiáveis padrão e modo light */
+:root{
+    --text-color: white;
+    --bg-url: url(./assets/bg-desktop.jpg);
+    --stroke-color: rgba(255, 255, 255, 0.5);
+    --surface-color: rgba(255, 255, 255, 0.05);
+    --surface-color-hover: rgba(0, 0, 0, 0.02);
+    --highlight-color: rgba(255, 255, 255, 0.2); 
+    --switch-bg-url: url(./assets/moon-stars.svg);
+}
+
+.light{
+    --text-color: black;
+    --bg-url: url(./assets/bg-desktop-light.jpg);
+    --stroke-color: rgba(0, 0, 0, 0.5);
+    --surface-color: rgba(0, 0, 0, 0.05);
+    --surface-color-hover: rgba(0, 0, 0, 0.02);
+    --highlight-color: rgba(0, 0, 0, 0.1); 
+    --switch-bg-url: url(./assets/sun.svg);
+}
+
+body{
+    /* background-image: url(./assets/bg-mobile.jpg);
+    background-repeat:no-repeat;
+    background-position: top center;
+    background-size: cover;
+
+    >>> Short Hand - body{color image repeat position/size} */
+    background: var(--bg-url) no-repeat top center/cover;
+}
+
+/* o "*" significa o seletor universal do que foi atribuido */
+body *{
+    /* neste caso a fonte e a cor selecionados estão sendo aplicados para todo o documento HTML */
+    font-family: "Inter", sans-serif;
+    color: var(--text-color);
+}
+
+#container{
+    /* não é necessário adicionar a altura, pois o conteúdo automaticamente irá preencher a caixa conforme for inserido no seu interior */
+    width: 360px;
+    /*aqui está sendo aplicado o shor hand "reloginho" onde "56px" refere-se à margem superior e "auto" em ambas as laterais*/
+    margin: 56px auto;
+    padding: 0 24px;
+
+}
+
+/* "display: inline" aceita apenas "text-align:". para utilizar o "margin: auto" deve-se forçar um "display-block", pois somente blocos aceitam dessa maneira. */
+#profile{
+    /* quando uma propriedade é aplicada à tag pai, ela é replicada para as tags filhas, como no exemplo abaixo, onde "text-align: center" é aplicada também em "#profile img" e "profile p" */
+    text-align: center;
+    padding: 24px;
+}
+
+#profile img{
+    width: 112px;
+}
+
+#profile p{
+    font-weight: 500;
+    line-height: 24px;
+    /*pode ser utilizado um short hand na propriedade "margin" que funciona no sentido horádio >>> margin top > right > bottom > left*/
+    margin: 8px auto 0 auto;
+}
+
+#switch{
+    position: relative;
+    width: 64px;
+    margin: 4px auto;
+}
+
+#switch button{
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 50%;
+    background: white var(--switch-bg-url) no-repeat center;
+    /* também o "absolute" vai ser relativo ao "relative" de cima */
+    position: absolute;
+    top: 50%;
+    /* aqui está acontecendo uma sobreposição de camadas como explicado na teoria do prédio */
+    z-index: 1;
+    transform: translateY(-50%);
+}
+
+.light #switch button {
+    right: 0;
+    left: initial;
+}
+
+#switch span{
+    display: block;
+    width: 64px;
+    height: 24px;
+    border-radius: 9999px;
+    background: var(--surface-color);
+    border: var(--stroke-color);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    
+}
+
+ul{
+    padding: 24px 0;
+    /* list-style: none; >>> elimina os bullets da "ul" ou os números crescentes da "ol" */
+    list-style: none;
+    /* display: flex; >>> trabalha com os elementos no interior da caixa e não com a caixa em si */
+    display: flex;
+    /* por padrão o "flex-direction:" ja é do tipo "row", sendo necessário forçar os elementos a ficarem um abaixo do outro com a propriedade "column" */
+    flex-direction: column;
+    /* "gap" é o espaçamento entre os elementos dentro da lista */
+    gap: 16px;
+}
+
+ul li a{
+    /* a propriedade display flex cria um eixo X e outro Y dentro da caixa */
+    display: flex;
+    /* "align-items: center" irá colocar os elementos sobre a linha do eixo X */
+    align-items: center;
+    /* justify-content: center" irá colocar os elementos centralizados com o eixo Y */
+    justify-content: center;
+    /* aqui o padding está sendo aplicado na parte superior e inferior com 16px e nas laterais com 24px */
+    padding: 16px 24px;
+    /* propriedades de cor de fundo e borda, respectivamente, dos botões "li" */
+    background: var(--surface-color);
+    border: 1px solid var(--stroke-color);
+    /* arredondamento da borda */
+    border-radius: 8px;
+    /* backdrop-filter não é bem aceito em alguns navegadores, fazendo-se necessário aplicar o prefixo "-webkit" */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    /* esta propriedade retira o sublinhado por conta do hiperlink no texto */
+    text-decoration: none;
+    font-weight: 500;
+    /* esta propriedade irá causar um efeito de transição primeiramente no objeto seleciona seguido do seu tempo de duração */
+    transition: background 0.2s; 
+}
+
+/* "hover" é a ação que o botão tem ao ser passado o mouse por cima */
+ul li a:hover{
+    background: var(--surface-color-hover);
+    border: 1px solid var(--text-color);
+}
+
+#social-links{
+    display: flex;
+    /* o "gap" somente é habilitado ao colocar "display: flex" */
+    justify-content: center;
+    /* aqui é onde é selecionado o tamanho dos ícones */
+    font-size: 24px;
+    padding: 24px;
+}
+
+#social-links a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    transition: background 0.2s;
+    border-radius: 50%;
+}
+
+#social-links a:hover{
+    background: var(--highlight-color);
+}
+
+footer{
+    padding: 24px;
+    text-align: center;
+    font-size: 14px;
+}
