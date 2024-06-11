@@ -45,7 +45,8 @@ body *{
 
 #container{
     /* não é necessário adicionar a altura, pois o conteúdo automaticamente irá preencher a caixa conforme for inserido no seu interior */
-    width: 360px;
+    width: 100%;
+    max-width: 588px;
     /*aqui está sendo aplicado o shor hand "reloginho" onde "56px" refere-se à margem superior e "auto" em ambas as laterais*/
     margin: 56px auto;
     padding: 0 24px;
