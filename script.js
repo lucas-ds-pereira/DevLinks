@@ -14,7 +14,7 @@ function toggleMode() {
 // substituir a imagem
     if (html.classList.contains('light')) {
     //encontrar a imagem
-        img.setAttribute('src', './assets/avatar-light.png')
+        img.setAttribute('src', './assets/avatar.png')
     } else {
         img.setAttribute('src', './assets/avatar.png')
     }
